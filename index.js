@@ -19,15 +19,57 @@ const logger = require("./utils/log");
 //========= Create website for dashboard/uptime =========//
 ///////////////////////////////////////////////////////////
 
+const http = require('http');
+
 const dashboard = http.createServer(function (_req, res) {
-    res.writeHead(200, "OK", { "Content-Type": "text/plain" });
-    res.write("WELCOME BACK CHUNG ĐẠT. OH YEAH");
+    // Set response header with status code and content type
+    res.writeHead(200, { "Content-Type": "text/html" });
+
+    // HTML content with some styling for a beautiful effect
+    const htmlContent = `
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Chat Bot Messenger</title>
+            <style>
+                body {
+                    font-family: 'Arial', sans-serif;
+                    background-color: #f0f0f0;
+                    text-align: center;
+                    padding: 50px;
+                }
+                h1 {
+                    color: #333;
+                    text-shadow: 2px 2px 4px #888;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>This Is A Chat Bot Messenger</h1>
+        </body>
+        </html>
+    `;
+
+    // Write the HTML content to the response
+    res.write(htmlContent);
     res.end();
 });
 
-dashboard.listen(process.env.port || 0);
+// Listen on the specified port or 0 for random available port
+dashboard.listen(process.env.PORT || 0, function () {
+    // Get the actual port the server is listening on
+    const actualPort = dashboard.address().port;
 
-logger("Opened server site...", "[ Starting ]");
+    // Log the server start with a beautiful message
+    logger(`Server started on port ${actualPort}...`, "[ Starting ]");
+});
+
+// Dummy logger function for illustration purposes
+function logger(message, context) {
+    console.log(`${context} ${message}`);
+}
 
 /////////////////////////////////////////////////////////
 //========= Create start bot and make it loop =========//
