@@ -10,10 +10,10 @@
   "EMAIL": "",
   "PASWORD": "",
   "OTPKEY": "",
-  "BOTNAME": "𝓑𝓸𝓚",
+  "BOTNAME": "",
   "PREFIX": "!",
   "ADMINBOT": [
-    "100037741424837"
+    ""
   ],
   "NDH": [],
   "DATABASE": {
